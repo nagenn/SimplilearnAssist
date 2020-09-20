@@ -166,7 +166,7 @@ git status
 Option1: SSH
 cd ~/.ssh
 ssh-keygen
-cat id-rsa.pub
+cat id_rsa.pub
 copy this and paste it in github -settings - SSH keys - add new SSH key
 cd ../<yourreponame>
 git remote add origin git@github.com:<your repo>.git
