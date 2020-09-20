@@ -1,0 +1,324 @@
+
+#Download and Install Git: 
+https://git-scm.com/downloads
+
+#Install git with screentshots for windows:
+http://robertovormittag.net/ebooks/git-and-github/git-for-windows-installation-screenshots/
+
+#On Mac - you can use homebrew
+ brew install git
+
+#On Ubuntu - you can use apt-get
+ apt-get install git
+
+ git --version to verify installation
+
+#Configure:
+ git config --global user.name "Nagen"
+ git config --global user.email "nagen@test.com"
+
+#Many other config options: 
+https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration
+
+#3 levels of config: System, Global & Local
+ git config --global user.name
+ git config --system user.name
+
+#Check your config
+git config --global --list
+
+#Create repository:
+ mkdir <directory name>
+ cd < directory name>
+ git init
+
+#OR
+ git init <directory name>
+ cd < directory name>
+
+#Check status:
+ git status
+
+#Create a new file
+ touch file1.code 
+#<OR> use an editor to create a simple text file in the current directory
+
+ git status
+
+#Add file to staging
+ git add <filename> OR '.' to add all files in the directory
+
+#Commit file:
+ git commit -m "<comments>"
+
+ git status
+
+#Modify file:
+echo "#Sample line of code" >> file1.code OR use an editor to add this line and save
+
+#Try
+ git commit -m "Version 1.01"
+Why does it not work?
+
+
+#We forgot to add it to staging
+git add .
+
+#Now try commit but without -m "comment". 
+#What do you see?
+#Now try
+git commit -m "<comment"
+
+#modify the file again
+#This time we will use one command for both adding to staging and committing
+git commit -a -m "<comment>"
+#For files that have already been added before and modified now, you can use
+
+#View all commits:
+git log
+
+#More concise:
+git log --oneline
+
+#try
+ git diff file1.code
+
+#Edit & save file1.code
+
+#Now try again
+git diff file1.code 
+
+git add .
+
+#try again
+ git diff file.code 
+
+git diff --staged
+git diff --staged HEAD
+git diff --staged HEAD~1
+git diff --staged HEAD~2
+
+#Try a few more changes-save-commit to the file and then try this
+git commit -m "<comments>"
+git diff --staged HEAD
+#Notice working directory, staging area and committed files are all in sync now
+
+git log --oneline
+#Notice the commit ids
+
+#try
+ git diff <copy paste one of the commit ids>
+
+#Revert to an earlier commit
+git checkout <commitid> file1.code
+#View contents of file1.code
+
+git status
+#Notice the file has been staged 
+
+git commit -m "Reverted to version 1.0"
+git log --oneline
+#Notice the new version that has been committed
+
+#Deleting files in git
+#add two more files to your working directory
+#edit & save original file file1.code
+git status
+#observe 3 files in staging
+
+#this removes this file from both staging 
+#and working directory
+git rm <filename>
+#did you see a message asking you to use --cached or -f?
+
+git rm -f <filename>
+
+git status
+#Also check contents of directory
+#notice the file has been deleted from both working 
+#directory & staging
+
+#to delete a file only from staging, use --cached
+git rm --cached <filename2>
+
+git status
+#notice that the file you just removed is "untracked"
+#Also check contents of directory - notice the file still exists
+# in the working directory
+
+#Ignoring files
+#Create a new file in the working directory 
+#called .gitignore
+#In the file type *txt, save & close
+
+#now try adding a new file with extension .txt
+#What do you see?
+
+#how do you rename files in git?
+#homework
+
+#walk-thru of github.com
+#create an account or sign-in
+#create a new repo on github
+# now link your local repo and remote repo, name your name repo origin
+#this way you can push to origin instead of using the whole url
+
+Option1: SSH
+cd ~/.ssh
+ssh-keygen
+cat id-rsa.pub
+copy this and paste it in github -settings - SSH keys - add new SSH key
+cd ../<yourreponame>
+git remote add origin git@github.com:<your repo>.git
+#(be sure to be in a local git repo when running this command)
+#you can also use git clone 
+
+Option2: HTTP
+git remote add origin https://github.com/<your repo>
+#(be sure to be in a local git repo when running this command)
+#you can also use git clone 
+
+
+#push your local  to remote
+git push origin master
+
+#TIP: Use StackOverflow for searching issues and resolution
+
+#view commits on github Code->commits
+
+#Pulling changes from remote to local
+#On github.com, open a file in your remote repository and edit, commit
+#on local
+git pull origin master
+git log --oneline
+#Observe that number of commits have increased and the change is reflecting
+
+#Pushing changes to remote from local
+#Edit and save one of the files on your local working directory
+git commit -a -m "<comment>"
+git push origin master
+
+#Quick exercise
+#Make a change on the remote repo and commit
+#Make a change to the same file (but different line) on the local repo and commit
+#Now try git push origin master on the local repo
+#what is the outcome and why?
+
+#Merging the 2 changes
+git pull origin master
+#Observe the contents of the changed file - it will have a merge of both changes
+#But remote repo is still out of sync
+git status
+git commit -a -m "<comment>"
+git push origin master
+#now both have the merged file
+
+#Merge conflict resolution
+#Make a change to a file on local repo and commit
+#make a change to same file and same line number on remote repo and commit
+#run git pull origin master on local repo
+#What do you see?
+
+#Make a change to a file on remote repo and commit
+#make a change to same file and same line number on local repo and commit
+#run pull origin master on local repo
+#What do you see?
+
+#Issues & Milestones on Github
+#Quick exercise : Create a milestone; Create an issue and associate that milestone to a label and milestone
+
+#Branching
+#List all branches
+git branch
+#Create new branch
+git branch <new branch name>
+git branch
+#Observe the new branch is listed, but you are still in master
+
+#Switch to new branch
+git checkout <branch name>
+git log --oneline
+#Observe that the new branch has replicated all the commits of the master
+
+# OR - you can create and switch to new branch 
+#in a single command using git checkout -b <new branch name>
+
+#Changing code in the branch
+#Make a change in one of the files & commit
+git log --oneline
+#Observe the latest commit is for the new branch
+
+#Switch to master branch
+git checkout master
+git log --oneline
+#observe the commit made in new branch is not 
+#available in master
+
+#check the difference between the two branches
+git diff master..<branch name>
+
+#merge the change back into master
+git merge <branch-name>
+git diff master..<branch-name>
+#observe there are no differences
+git log --oneline --decorate --graph
+#observe the latest commit ID is the same as the branch
+
+#dont forget to sync with remote repo
+git push origin master
+
+#exercise
+#switch to a branch and delete a file git rm <filename>
+#commit the change
+#switch to master branch
+#try git merge <branch-name>
+#what do you see?
+
+#Stashing in git
+#switch to a branch, edit a file and save (don't commit)
+git status
+#observe one file has been modified but not staged or committed
+git stash save "<comment>"
+git status
+#observe no changes listed. check contents of changed file and you will see your last change has been reverted
+
+#rebasing in git
+#create a new branch 
+#switch to that branch using git checkout 
+#make a change and commit
+#switch to master branch
+#make a change and commit
+git log --oneline
+#switch to previously created branch and check git log --oneline
+#observe the latest commit id for branch is older than latest commit od for master
+git rebase master
+git log --online
+#observe commit ids match
+
+
+#cloning in git
+#change directory to one step above
+cd ..
+#create a clone
+git clone <sourcereponame> <targetreponame>
+cd <targetreponame>
+git branch
+#observe this shows only the current active branch
+git branch -a
+#this shows all the branches
+
+#similary you can clone from github
+cd ..
+git clone <github repo url>
+
+#Creating a new branch on remote and copying on local
+#create a new branch on github
+git fetch origin <newbranchname>
+git branch -a
+git checkout <newbranchname>
+
+
+
+
+
+
