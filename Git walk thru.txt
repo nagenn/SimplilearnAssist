@@ -173,7 +173,7 @@ git remote add origin git@github.com:<your repo>.git
 #(be sure to be in a local git repo when running this command)
 #you can also use git clone 
 
-Option2: HTTP
+Option2: HTTP (**this will not work if you have 2-factor authentication enabled**)
 git remote add origin https://github.com/<your repo>
 #(be sure to be in a local git repo when running this command)
 #you can also use git clone 
