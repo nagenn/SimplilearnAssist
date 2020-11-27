@@ -1,0 +1,12 @@
+Download Java 11 (in Jenkins add a JDK for this path)
+Download SonarQube
+Download Sonar Scanner
+Edit Sonar-scanner.properties
+Create FreeStyle job
+  - source: git (sample-maven-app)
+  - Build Trigger: PollSCM * * * * *
+  - build step1: java '/home/labsuser/jenkins/workspace/SonarQ/src/main/javan/com.mycompany/app/App.Java'
+  - build step: Execute SonarQube Scanner
+	- jdk -> jdk_11
+	- Path to project properties: /home/labsuer
+  Buil now
