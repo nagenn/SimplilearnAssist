@@ -1,5 +1,6 @@
 Log in to  AWS Console
 Search for EC2 
+
 Setting up Jenkins Master
 -------------------------
 Create  new instance
@@ -15,4 +16,36 @@ sudo service jenkins start
 <externalipofec2instance>:8080
 Set up Jenkins
 
+Setting up Slave
+-------------------------
+Create  new instance
+  - in security group, choose all & any for inbound connections
+use same key pair as before
+Connect via ssh:
+  - ssh -i "JenkTest.pem" ubuntu@ec2-54-81-212-70.compute-1.amazonaws.com
+Once connected to EC2 via SSH 
+sudo apt-get update
+sudo apt install openjdk-8-jre (install Java)
 
+In Jenkins-Master
+Manage Jenkins-Nodes & Cloud -New Node
+  - give it a name
+  - Choose permanent
+  - give a description
+  - remote root dir: /home/ubuntu
+  - give a label
+  - launch method - USe SSH
+  - Host - Slave node's private IP
+  
+ Onslave node via ssh
+  - create a ssh key using ssh-keygen -t rsa -N "" -f /home/jenkins-slave-01/.ssh/id_rsa
+  - cd .ssh
+  - cat id_rsa.pub > authorized_keys
+  - chmod 700 authorized_keys
+  
+  On Master Node
+    - mkdir -p /var/lib/jenkins/.ssh
+    - cd /var/lib/jenkins/.ssh
+  - ssh-keyscan -H SLAVE-NODE-IP-OR-HOSTNAME >>/var/lib/jenkins/.ssh/known_hosts
+  - chown jenkins:jenkins known_hosts
+  - chmod 700 known_hosts
