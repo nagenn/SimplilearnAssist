@@ -1,4 +1,7 @@
 Download Java 11 (in Jenkins add a JDK for this path)
+(sudo apt-get update 
+sudo apt-get install openjdk-11-jdk)
+
 Download SonarQube (https://www.sonarqube.org/downloads/ - look for community edition)
 Unzip once downloaded
 Download Sonar Scanner (https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/)
