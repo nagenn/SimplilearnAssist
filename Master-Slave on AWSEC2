@@ -1,0 +1,18 @@
+Log in to  AWS Console
+Search for EC2 
+Setting up Jenkins Master
+-------------------------
+Create  new instance
+  - in security group, choose all & any for inbound connections
+download new keypair and change its permissions chmod 400 JenkTest.pem
+Connect via ssh:
+  - ssh -i "JenkTest.pem" ubuntu@ec2-54-91-219-70.compute-1.amazonaws.com
+Once connected to EC2 via SSH 
+sudo apt-get update
+sudo apt install openjdk-8-jre (install Java)
+Steps to install Jenkins https://pkg.jenkins.io/debian-stable/
+sudo service jenkins start
+<externalipofec2instance>:8080
+Set up Jenkins
+
+
