@@ -1,0 +1,18 @@
+Download and unzip Tomcat (https://tomcat.apache.org/download-80.cgi)
+Tomcat  runs at 8080 by default -if this conflicts with Jenkins or other, 
+  - go to tomcat unzip folder -> conf, open server.xml and change connector port from 8080 to a desired one
+  
+ Goto Tomcat bin folder -> run ./startup.sh or startup.bat
+ On web browser open localhost:<yourport> to confirmTomcat is running
+ 
+ We will be using a maven Java example. 
+  - In pom.xml, be sure to change packaging to war (from jar)
+  
+ On Jenkins-> New Maven build job:
+  -Source code: git (https://github.com/nagenn/maven-app)
+  -Build trigger: Build whenever a SNAPSHOT dependency is built
+  - Build - Root POM - default value (pom.xml)
+  - post build step:  execute shell: cp <dir where the war file was generated/filename.war> <tomcat unzip dir/webapps>
+  My example: cp '/Users/nagen/.jenkins/workspace/Tomcat Demo/target/maven-web-application.war' /Users/nagen/Downloads/apache-tomcat-8.5.57/webapps
+  
+  on a web browser: localhost:<yourport>/<yourwarname>
