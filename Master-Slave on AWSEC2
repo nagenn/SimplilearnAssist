@@ -46,6 +46,9 @@ Manage Jenkins-Nodes & Cloud -New Node
   On Master Node
     - mkdir -p /var/lib/jenkins/.ssh
     - cd /var/lib/jenkins/.ssh
-  - ssh-keyscan -H SLAVE-NODE-IP-OR-HOSTNAME >>/var/lib/jenkins/.ssh/known_hosts
-  - chown jenkins:jenkins known_hosts
-  - chmod 700 known_hosts
+    - sudo touch known_hosts
+    - vi known_hosts
+    - ssh-keyscan -H SLAVE-NODE-IP-OR-HOSTNAME 
+    - copy output of above command and past it into vi (where you have opened known_hosts). Save and close
+    - chown jenkins:jenkins known_hosts
+   - chmod 700 known_hosts
