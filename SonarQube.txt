@@ -1,12 +1,43 @@
 Download Java 11 (in Jenkins add a JDK for this path)
-Download SonarQube
-Download Sonar Scanner
-Edit Sonar-scanner.properties
+Download SonarQube (https://www.sonarqube.org/downloads/ - look for community edition)
+Unzip once downloaded
+Download Sonar Scanner (https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/)
+Unzip once downloaded
+
+Edit Sonar-scanner.properties in conf directory of your sonar scanner unzip
+Create a sonar-project.properties in your home directory - this can be an empty file
+
+Install Sonar Scanner plug in on Jenkins
+
+Start SonarQube server
+ - cd to sonarqube bin/linux..
+ - ./sonar.sh start or ./sonar.sh console to start 
+ - localhost:9000 - login with admin/admin
+ - goto Administration -> Security -> Users ->admin- generate new token -> copy token
+ 
+Goto  Jenkins > Credentials > System > Global Credentials > Add Credentials
+	Kind : Secret test
+	Secret : SonarQube Authentication Token
+	Description : Provide a descriptive name
+	Click OK to add new credentials.
+	
+Add SonarQube install on Jenkins -> Configure System
+	- give it a name
+	- url localhost:9000
+	- add a server auth token and from dropdown choose the name of the token you added in the prev step
+	- save
+
+Jenkins -> Global Tool Config -> Add SonarQube Scanner
+	- give it a name
+	- SONAR-RUNNER-HOME: give it path to your sonar scanner unzip
+
 Create FreeStyle job
   - source: git (sample-maven-app)
-  - Build Trigger: PollSCM * * * * *
-  - build step1: java '/home/labsuser/jenkins/workspace/SonarQ/src/main/javan/com.mycompany/app/App.Java'
-  - build step: Execute SonarQube Scanner
+  - Build Trigger: None
+  - build step1: execute shell: javac '/home/labsuser/jenkins/workspace/SonarQ/src/main/javan/com.mycompany/app/App.Java' (command & path path to your code that needs compiling)
+  - build step2: Execute SonarQube Scanner
 	- jdk -> jdk_11
-	- Path to project properties: /home/labsuer
-  Buil now
+	- Path to project properties: /home/labsuer (created in line 8 above)
+
+
+  Build now
