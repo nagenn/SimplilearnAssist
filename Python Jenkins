@@ -1,0 +1,8 @@
+ensure python is installed (sudo apt install python3.8 )
+ensure pip is installed (sudo apt install python-pip or sudo apt install python3-pip)
+pip install xmlrunner
+pip install unittest2 (or unittest3)
+Freestyle job 
+  - source: git
+  - Build step: executes shell - python runtests.py (or your python file)
+  - Post-build step: Publish Junit test report: sudo apt install python-pip
