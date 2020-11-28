@@ -24,26 +24,15 @@ use same key pair as before
 Connect via ssh:
   - ssh -i "JenkTest.pem" ubuntu@ec2-54-81-212-70.compute-1.amazonaws.com
 Once connected to EC2 via SSH 
-sudo apt-get update
-sudo apt install openjdk-8-jre (install Java)
-
-In Jenkins-Master
-Manage Jenkins-Nodes & Cloud -New Node
-  - give it a name
-  - Choose permanent
-  - give a description
-  - remote root dir: /home/ubuntu
-  - give a label
-  - launch method - USe SSH
-  - Host - Slave node's private IP
-  
- Onslave node via ssh
+  - sudo apt-get update
+  - sudo apt install openjdk-8-jre (install Java)
   - create a ssh key using ssh-keygen -t rsa -N "" -f /home/jenkins-slave-01/.ssh/id_rsa
   - cd .ssh
   - cat id_rsa.pub > authorized_keys
   - chmod 700 authorized_keys
-  
-  On Master Node
+
+In Jenkins-Master
+ On Master Node
     - mkdir -p /var/lib/jenkins/.ssh
     - cd /var/lib/jenkins/.ssh
     - sudo touch known_hosts
@@ -52,3 +41,27 @@ Manage Jenkins-Nodes & Cloud -New Node
     - copy output of above command and past it into vi (where you have opened known_hosts). Save and close
     - chown jenkins:jenkins known_hosts
    - chmod 700 known_hosts
+in Jenkins: Manage Jenkins-Nodes & Cloud -New Node
+  - give it a name
+  - Choose permanent
+  - give a description
+  - remote root dir: /home/ubuntu
+  - give a label
+  - launch method - USe SSH
+  - Host - Slave node's private IP
+  - Credentials: Add Jenkins Credential
+    - Kind: SSH Username & private key
+    - user: ubuntu
+    - private key: select enter directly
+      - on slave node, goto .ssh dir and run cat  id_rsa
+      - copy & paste output back here
+      - add
+    - now you can select this newly added credential back in the previous screen
+    - save
+  - click on node and make sure it is running
+ 
+ on master create a freestyle job and choose "restrict where this project can be run" and enter slave node name
+ build now
+     
+  
+  
