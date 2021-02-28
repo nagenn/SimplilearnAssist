@@ -30,6 +30,8 @@ Add SonarQube install on Jenkins -> Configure System
 	- add a server auth token and from dropdown choose the name of the token you added in the prev step
 	- save
 
+Jenkins -> Global Tool Config -> ensure you havve added the new JDK under JDK installs
+
 Jenkins -> Global Tool Config -> Add SonarQube Scanner
 	- give it a name
 	- SONAR-RUNNER-HOME: give it path to your sonar scanner unzip
