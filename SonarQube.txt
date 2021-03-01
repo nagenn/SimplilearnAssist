@@ -44,7 +44,7 @@ Manage Jenkins -> Configure System -> Add SonarQube
 Create FreeStyle job
   - source: git (sample-maven-app)
   - Build Trigger: None
-  - build step1: execute shell: javac '/home/labsuser/jenkins/workspace/SonarQ/src/main/javan/com.mycompany/app/App.Java' (command & path path to your code that needs compiling)
+  - build step1: execute shell: javac '/home/labsuser/jenkins/workspace/SonarQ/src/main/java/com/mycompany/app/App.java' (command & path path to your code that needs compiling)
   - build step2: Execute SonarQube Scanner
 	- jdk -> jdk_11
 	- Path to project properties: /home/labsuer (created in line 8 above)
