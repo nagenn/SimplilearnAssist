@@ -26,7 +26,7 @@ Connect via ssh:
 Once connected to EC2 via SSH 
   - sudo apt-get update
   - sudo apt install openjdk-8-jre (install Java)
-  - create a ssh key using ssh-keygen -t rsa -N "" -f /home/jenkins-slave-01/.ssh/id_rsa
+  - create a ssh key using ssh-keygen -t rsa -N "" -f /home/ubuntu/.ssh/id_rsa
   - cd .ssh
   - cat id_rsa.pub > authorized_keys
   - chmod 700 authorized_keys
