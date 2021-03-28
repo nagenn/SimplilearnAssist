@@ -46,5 +46,5 @@ Create FreeStyle job
 	- jdk -> jdk_11
 	- Path to project properties: /home/labsuer (created in line 8 above)
 
-
+ Esnure SonarQube server is running
   Build now
