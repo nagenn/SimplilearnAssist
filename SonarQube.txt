@@ -1,3 +1,5 @@
+Check in /usr/lib/jvm if jdk-11 exists.
+If it does, skip this:
 Download Java 11 (in Jenkins add a JDK for this path)
 (sudo apt-get update 
 sudo apt-get install openjdk-11-jdk)
@@ -18,7 +20,7 @@ Start SonarQube server
  - localhost:9000 - login with admin/admin
  - goto Administration -> Security -> Users ->admin- generate new token -> copy token
  
-Goto  Jenkins > Credentials > System > Global Credentials > Add Credentials
+Goto  Manage Jenkins > Manage Credentials > System > Global Credentials > Add Credentials
 	Kind : Secret test
 	Secret : SonarQube Authentication Token
 	Description : Provide a descriptive name
