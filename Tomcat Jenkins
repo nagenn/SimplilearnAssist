@@ -15,6 +15,6 @@ Tomcat  runs at 8080 by default -if this conflicts with Jenkins or other,
   -Build trigger: Build whenever a SNAPSHOT dependency is built
   - Build - Root POM - default value (pom.xml)
   - post build step:  execute shell: cp <dir where the war file was generated/filename.war> <tomcat unzip dir/webapps>
-  My example: cp '/Users/nagen/.jenkins/workspace/Tomcat Demo/target/maven-web-application.war' /Users/nagen/Downloads/apache-tomcat-8.5.57/webapps
+  My example: cp /home/labsuser/jenkins/workspace/TomcatJenkins/target/maven-web-application.war /home/labsuser/apache-tomcat-8.5.60/webapps/
   
   on a web browser: localhost:<yourport>/<yourwarname>
