@@ -3,6 +3,8 @@ Tomcat  runs at 8080 by default -if this conflicts with Jenkins or other,
   - go to the tomcat folder -> conf, open server.xml and change connector port from 8080 to a desired one
   
  Goto Tomcat bin folder -> run ./startup.sh or startup.bat
+ If you get a permission denied try this command in the parent directory of your tomcat install:
+ chmod -R 777 <your tomcat folder name>
  On web browser open localhost:<yourport> to confirmTomcat is running
  
  We will be using a maven Java example. 
