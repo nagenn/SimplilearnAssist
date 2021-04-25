@@ -1,8 +1,10 @@
 Check in /usr/lib/jvm if jdk-11 exists.
 If it does, skip this:
-Download Java 11 (in Jenkins add a JDK for this path)
+Download Java 11 
 (sudo apt-get update 
 sudo apt-get install openjdk-11-jdk)
+
+In Jenkins add a JDK for this path in Global Tool Config
 
 Download SonarQube (https://www.sonarqube.org/downloads/ - look for community edition)
 Unzip once downloaded
