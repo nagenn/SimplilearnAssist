@@ -4,7 +4,8 @@ Download Java 11
 (sudo apt-get update 
 sudo apt-get install openjdk-11-jdk)
 
-In Jenkins add a JDK for this path in Global Tool Config
+In Jenkins add a JDK for this path in Global Tool Config:
+Manage Jenkins -> Global Tool Config -> add the new JDK under JDK installs
 
 Download SonarQube (https://www.sonarqube.org/downloads/ - look for community edition)
 Unzip once downloaded
@@ -22,9 +23,11 @@ Start SonarQube server
  - localhost:9000 - login with admin/admin
  - goto Administration -> Security -> Users ->admin- generate new token -> copy token
  
+ ./sonar.sh stop (else, your lab system might hang)
+ 
 Goto  Manage Jenkins > Manage Credentials > System > Global Credentials > Add Credentials
-	Kind : Secret test
-	Secret : SonarQube Authentication Token
+	Kind : Secret text
+	Secret : Paste SonarQube Authentication Token
 	Description : Provide a descriptive name
 	Click OK to add new credentials.
 	
@@ -33,7 +36,7 @@ Manage Jenkins -> Configure System -> Add SonarQube
 					-> URL: http://localhost:9000 
 					-> authentication - choose the global credential you added above (SonarJ in my test)
 
-Manage Jenkins -> Global Tool Config -> ensure you have added the new JDK under JDK installs
+
 
 Manage Jenkins -> Global Tool Config -> Add SonarQube Scanner
 	- give it a name
@@ -48,5 +51,5 @@ Create FreeStyle job
 	- jdk -> jdk_11
 	- Path to project properties: /home/labsuer (created in line 8 above)
 
- Esnure SonarQube server is running
-  Build now
+ Ensure SonarQube server is running: ./sonar.sh start 
+ Jenkins job-> Build now
