@@ -32,6 +32,7 @@ Once connected to EC2 via SSH
   - cd .ssh
   - cat id_rsa.pub > authorized_keys
   - chmod 700 authorized_keys
+  - run cat  id_rsa -> copy output in a plain text editor
 
 In Jenkins-Master
  On Master Node
@@ -55,9 +56,8 @@ in Jenkins: Manage Jenkins-Nodes & Cloud -New Node
     - Kind: SSH Username & private key
     - user: ubuntu
     - private key: select enter directly
-      - on slave node, goto .ssh dir and run cat  id_rsa
-      - copy & paste output back here
-      - add
+      - copy & paste output from line 35 here
+      - click on add
     - now you can select this newly added credential back in the previous screen
     - save
   - click on node and make sure it is running
