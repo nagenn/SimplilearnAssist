@@ -1,20 +1,40 @@
-Download and unzip Tomcat (https://tomcat.apache.org/download-80.cgi)
-Tomcat  runs at 8080 by default -if this conflicts with Jenkins or other, 
-  - go to the tomcat folder -> conf, open server.xml and change connector port from 8080 to a desired one
+Tomcat 9.x is already installed on the lab system
   
- Goto Tomcat bin folder -> run ./startup.sh or startup.bat
- If you get a permission denied try this command in the parent directory of your tomcat install:
- chmod -R 777 <your tomcat folder name>
- On web browser open localhost:<yourport> to confirmTomcat is running
+ To verify:
+ sudo /opt/tomcat/bin/startup.sh
+ On web browser open localhost:8082 (this is the port on which it is configured)
+ 
+ We need to create a user in tomcat-users.xml
+ sudo vi /opt/tomcat/conf/tomcat-users.xml
+ 
+ Towards the bottom of the file add this line 
+ <user username="robot" password="deploy" roles="manager-script" />
  
  We will be using a maven Java example. 
   - In pom.xml, be sure to change packaging to war (from jar)
+  
+ On Jenkins->Manage Jenkins-> Manage plugins-> Install "Deploy to container plugin"
   
  On Jenkins-> New Maven build job:
   -Source code: git (https://github.com/nagenn/maven-app)
   -Build trigger: Build whenever a SNAPSHOT dependency is built
   - Build - Root POM - default value (pom.xml)
-  - post build step:  execute shell: cp <dir where the war file was generated/filename.war> <tomcat unzip dir/webapps>
-  My example: cp /home/labsuser/jenkins/workspace/TomcatJenkins/target/maven-web-application.war /home/labsuser/apache-tomcat-8.5.60/webapps/
+  - goals: clean install
+  - post build step:  Deploy war/ear to a container
+  WAR/EAR files: **/*.war
+  Containers: Tomcat 9.x
+  Add Jenkins credential:
+  Global
+  User name/password
+  User name: robot
+  password: deploy
+  ID: Tomcat-Jenkins (give it some sensible name)
+  Save
+  Back in the Post-build action: choose the credential you just created
+  Save.
+  
+  Build
+  
+  Confirm in the /opt/tomcat/webapps folder, your .war file has been built
   
   on a web browser: localhost:<yourport>/<yourwarname>
