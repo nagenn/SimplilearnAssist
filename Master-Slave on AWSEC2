@@ -42,8 +42,8 @@ In Jenkins-Master
     - vi known_hosts
     - ssh-keyscan -H <PVT-IP-OF-SLAVENODE>
     - copy output of above command and past it into vi (where you have opened known_hosts). Save and close
-    - chown jenkins:jenkins known_hosts
-   - chmod 700 known_hosts
+    - sudo chown jenkins:jenkins known_hosts
+   - sudo chmod 700 known_hosts
 in Jenkins: Manage Jenkins-Nodes & Cloud -New Node
   - give it a name
   - Choose permanent
