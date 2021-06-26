@@ -1,0 +1,47 @@
+Log in to  AWS Console
+Search for EC2 
+
+Setting up Tomcat
+-------------------------
+Create  new instance
+  - in security group, choose all & any for inbound connections
+download new keypair and change its permissions chmod 400 <name-you-gave>.pem
+Connect via ssh:
+  - ssh -i "JenkTest.pem" ubuntu@ec2-54-91-219-70.compute-1.amazonaws.com
+Once connected to EC2 via SSH 
+sudo apt-get update
+sudo apt-get install default-jdk
+OR
+sudo apt install openjdk-8-jre (install Java)
+
+Download tomcat 
+ wget https://apachemirror.wuchna.com/tomcat/tomcat-9/v9.0.48/bin/apache-tomcat-9.0.48.tar.gz
+ sudo mkdir /opt/tomcat
+Extract to tomcat directory
+tar xvzf tomcat-9.0.48.tar.gz /opt/tomcat
+
+cd /opt/tomca
+
+Change permissions
+sudo chmod -R g+r conf
+sudo chmod g+x conf
+
+Run sudo update-java-alternatives -l to check your JAVA location
+Copy that and append /jre to it
+
+Edit bashrc
+vi ~/.bashrc
+Add these lines: 
+export JRE_HOME=<javalocation/jre> from above step
+export JAVA_HOME=<javalocation/jre> from above step
+
+Reboot instance
+
+sudo opt/tomcat/bin/startup.sh
+
+ps -ef | grep tomcat to confirm it is running
+Access on your browser using <externalip address>:8080
+
+
+
+
