@@ -20,11 +20,12 @@ Download tomcat
 Extract to tomcat directory
 tar xvzf tomcat-9.0.48.tar.gz /opt/tomcat
 
-cd /opt/tomca
+cd /opt/tomcat
 
 Change permissions
 sudo chmod -R g+r conf
 sudo chmod g+x conf
+sudo chmod -R 777 <parent folder of Tomcat>
 
 Run sudo update-java-alternatives -l to check your JAVA location
 Copy that and append /jre to it
