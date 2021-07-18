@@ -50,6 +50,7 @@ Create FreeStyle job
   - build step2: Execute SonarQube Scanner
 	- jdk -> jdk_11
 	- Path to project properties: /home/labsuer (created in line 8 above)
+	- Analysus properties: add the same content from sonar-scanner.properties
 
  Ensure SonarQube server is running: ./sonar.sh start 
  Jenkins job-> Build now
