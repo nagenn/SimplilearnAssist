@@ -29,6 +29,7 @@ Tomcat 9.x is already installed on the lab system
   User name: robot
   password: deploy
   ID: Tomcat-Jenkins (give it some sensible name)
+  Tomcat URL: http://localhost:8082
   Save
   Back in the Post-build action: choose the credential you just created
   Save.
