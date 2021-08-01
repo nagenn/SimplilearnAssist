@@ -34,7 +34,7 @@ export JAVA_HOME=<javalocation/jre> from above step
 
 Reboot instance
 
-sudo opt/tomcat/pache-tomcat-9.0.48/bin/startup.sh
+sudo opt/tomcat/apache-tomcat-9.0.48/bin/startup.sh
 
 ps -ef | grep tomcat to confirm it is running
 Access on your browser using <externalip address>:8080
